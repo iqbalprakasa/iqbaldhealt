@@ -1,0 +1,126 @@
+{
+    "data": [{
+            "id": "1000",
+            "code": "f230fh0g3",
+            "name": "Perumahan mancagar no 5",
+            "description": "Product Description",
+            "image": "bamboo-watch.jpeg",
+            "price": 65,
+            "harga": "140Juta",
+            "category": "Accessories",
+            "quantity": 24,
+            "inventoryStatus": "INSTOCK",
+            "rating": 5,
+            "orders": [{
+                    "id": "1000",
+                    "productCode": "f230fh0g3",
+                    "date": "2020-09-13",
+                    "amount": 65,
+                    "quantity": 1,
+                    "customer": "David James",
+                    "status": "PENDING",
+                    "fasilitas": "Air PDAM"
+                },
+                {
+                    "id": "1001",
+                    "productCode": "f230fh0g3",
+                    "date": "2020-05-14",
+                    "amount": 130,
+                    "quantity": 2,
+                    "customer": "Leon Rodrigues",
+                    "status": "DELIVERED",
+                    "fasilitas": "Listrik 100 Watt"
+                },
+                {
+                    "id": "1002",
+                    "productCode": "f230fh0g3",
+                    "date": "2019-01-04",
+                    "amount": 65,
+                    "quantity": 1,
+                    "customer": "Juan Alejandro",
+                    "status": "RETURNED",
+                    "fasilitas": "Kanopi"
+                },
+                {
+                    "id": "1003",
+                    "productCode": "f230fh0g3",
+                    "date": "2020-09-13",
+                    "amount": 195,
+                    "quantity": 3,
+                    "customer": "Claire Morrow",
+                    "status": "CANCELLED",
+                    "fasilitas": "Tempat Prakir Mobil"
+                }
+            ]
+        },
+        {
+            "id": "1001",
+            "code": "nvklal433",
+            "name": "Perumahan Mancagar no 12",
+            "harga": "120Juta",
+            "description": "Product Description",
+            "image": "black-watch.jpeg",
+            "price": 72,
+            "category": "Accessories",
+            "quantity": 61,
+            "inventoryStatus": "INSTOCK",
+            "rating": 4,
+            "orders": [{
+                    "id": "2000",
+                    "productCode": "nvklal433",
+                    "date": "2020-05-14",
+                    "amount": 72,
+                    "quantity": 1,
+                    "customer": "Maisha Jefferson",
+                    "status": "DELIVERED",
+                    "fasilitas": "Air PDAM Turn"
+                },
+                {
+                    "id": "2001",
+                    "productCode": "nvklal433",
+                    "date": "2020-02-28",
+                    "amount": 144,
+                    "quantity": 2,
+                    "customer": "Octavia Murillo",
+                    "status": "PENDING",
+                    "fasilitas": "Tempat Prakir Mobil"
+                }
+            ]
+        },
+        {
+            "id": "1002",
+            "code": "zz21cz3c1",
+            "name": "Jln.Ampera gg mesjid",
+            "description": "Product Description",
+            "image": "blue-band.jpeg",
+            "price": 79,
+            "harga": "80Juta",
+            "category": "Fitness",
+            "quantity": 2,
+            "inventoryStatus": "LOWSTOCK",
+            "rating": 3,
+            "orders": [{
+                    "id": "3000",
+                    "productCode": "zz21cz3c1",
+                    "date": "2020-07-05",
+                    "amount": 79,
+                    "quantity": 1,
+                    "customer": "Stacey Leja",
+                    "status": "DELIVERED",
+                    "fasilitas": "Dekat Mesjid"
+                },
+                {
+                    "id": "3001",
+                    "productCode": "zz21cz3c1",
+                    "date": "2020-02-06",
+                    "amount": 79,
+                    "quantity": 1,
+                    "customer": "Ashley Wickens",
+                    "status": "DELIVERED",
+                    "fasilitas": "Tidak Jauh dari jalan raya"
+                }
+            ]
+        }
+
+    ]
+}

@@ -1,0 +1,156 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-toast></p-toast>
+
+            <p-toolbar styleClass="mb-12">
+
+                <div class="card p-fluid">
+                    <h5>Data Pasien</h5>
+                    <div class="p-formgrid grid">
+
+                        <div class="col-12 md:col-3">
+                            <label htmlFor="namapasien">Nama Pasien</label>
+                            <input pInputText id="Namapasien" type="text" [(ngModel)]="namapasien" [ngClass]="{ 'ng-invalid ng-dirty' : submitted && !namapasien} " />
+                            <small class="ng-dirty ng-invalid " *ngIf="submitted && !namapasien ">Name harus diisi!</small>
+                        </div>
+                    </div>
+
+                    <h5>Data Resep</h5>
+                    <div class="p-formgrid grid">
+                        <div class="col-12 md:col-3">
+                            <label>Jenis Resep</label>
+                            <p-dropdown [options]="jenis" optionLabel="label" [(ngModel)]="selectedDrop"></p-dropdown>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <label htmlFor="email2">Nama Racikan</label>
+                            <input pInputText id="email2" type="text" [(ngModel)]="namaresep" />
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <label htmlFor="name2">Produk</label>
+                            <p-autoComplete placeholder="Search" [dropdown]="true" [suggestions]="produk" (completeMethod)="filterCountry($event)" field="obatalkes_nama" [(ngModel)]="produks" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !produks.obatalkes_nama}"
+                                (focusout)="ganti($event)">
+                            </p-autoComplete>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !produks.obatalkes_nama">Harap isi</small>
+
+                        </div>
+                        <div class="col-12 md:col-3 ">
+
+                            <label for="name">stok</label>
+                            <input type="text" pInputText id="stok" [(ngModel)]="stok" disabled />
+
+                        </div>
+                        <div class="col-12 md:col-3 ">
+                            <label htmlFor="email2 ">Qty</label>
+
+                            <p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [(ngModel)]="qty" required autofocus>
+                            </p-inputNumber>
+                        </div>
+                        <div class="col-12 md:col-3 ">
+                            <label htmlFor="name2 ">Signa</label>
+                            <p-autoComplete placeholder="Search " [dropdown]="true " [suggestions]="listsigna " (completeMethod)="signa($event) " field="signa_nama" [(ngModel)]="signas"></p-autoComplete>
+                        </div>
+                        <div class="col-12 md:col-3 " style="margin-top: 20px; ">
+                            <button pButton pRipple type="button " label="Tambah " class="p-button-rounded mr-2 " icon="pi pi-plus " (click)="tambah() "></button>
+                        </div>
+                    </div>
+                </div>
+            </p-toolbar>
+            <p-table #dt [value]="products " [columns]="cols " responsiveLayout="scroll " [rows]="3 " [globalFilterFields]="[ 'name', 'country.name', 'representative.name', 'status'] " [rows]="5 " [paginator]="true " [rowsPerPageOptions]="[5,10,20]
+                                    " [showCurrentPageReport]="true " selectionMode="multiple " [rowHover]="true " dataKey="id ">
+
+                <ng-template pTemplate="header">
+                    <tr>
+
+                        <th pSortableColumn="jenis">Jenis
+                            <p-sortIcon field="jenis"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="namaproduk">namaproduk
+                            <p-sortIcon field="namaproduk"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="qty">qty
+                            <p-sortIcon field="qty"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="signa">signa
+                            <p-sortIcon field="signa"></p-sortIcon>
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">jenis</span> {{product.jenis || product.jenis}}
+                        </td>
+                        <td style="width:18%; min-width:15rem;">
+                            <span class="p-column-title">namaproduk</span> {{product.namaproduk}}
+                        </td>
+                        <td style="width:18%; min-width:15rem;">
+                            <span class="p-column-title">qty</span> {{product.qty}}
+                        </td>
+                        <td style="width:18%; min-width:15rem;">
+                            <span class="p-column-title">SIGNA</span> {{product.signa_nama}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                </ng-template>
+            </p-table>
+            <div class="grid">
+                <div class="col-10"></div>
+                <div class="col-2">
+                    <div class="p-col-2" style="margin-top: 20px; ">
+                        <button pButton pRipple type="button " label="Simpan " class="p-button-rounded mr-3" icon="pi pi-save " (click)="savetransaksi() "></button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <p-dialog [(visible)]="productDialog " [style]="{width: '450px'} " header="Pemilik " [modal]="true " class="p-fluid ">
+            <ng-template pTemplate="content ">
+                <img [src]=" 'assets/demo/images/product/' + product.image " [alt]="product.image " width="150 " class="mt-0 mx-auto mb-5 block shadow-2 " *ngIf="product.image ">
+                <div class="field ">
+                    <label for="name ">Nama</label>
+                    <input type="text " pInputText id="name " [(ngModel)]="product.name " required autofocus [ngClass]="{ 'ng-invalid ng-dirty' : submitted && !product.name} " />
+                    <small class="ng-dirty ng-invalid " *ngIf="submitted && !product.name ">Name harus diisi!</small>
+                </div>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer ">
+                <button pButton pRipple label="Cancel " icon="pi pi-times " class="p-button-text " (click)="hideDialog() "></button>
+                <button pButton pRipple label="Save " icon="pi pi-check " class="p-button-text " (click)="simpan() "></button>
+            </ng-template>
+
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteProductDialog " header="Confirm " [modal]="true " [style]="{width: '450px'} ">
+            <div class="flex align-items-center justify-content-center ">
+                <i class="pi pi-exclamation-triangle mr-3 " style="font-size: 2rem "></i>
+                <span *ngIf="product ">Are you sure you want to delete <b>{{product.name}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer ">
+                <button pButton pRipple icon="pi pi-times " class="p-button-text " label="No " (click)="deleteProductDialog=false "></button>
+                <button pButton pRipple icon="pi pi-check " class="p-button-text " label="Yes " (click)="confirmDelete() "></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteProductsDialog " header="Confirm " [modal]="true " [style]="{width: '450px'} ">
+            <div class="flex align-items-center justify-content-center ">
+                <i class="pi pi-exclamation-triangle mr-3 " style="font-size: 2rem "></i>
+                <span>Are you sure you want to delete selected products?</span>
+            </div>
+            <ng-template pTemplate="footer ">
+                <button pButton pRipple icon="pi pi-times " class="p-button-text " label="No " (click)="deleteProductsDialog=false "></button>
+                <button pButton pRipple icon="pi pi-check " class="p-button-text " label="Yes " (click)="confirmDeleteSelected() "></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>
